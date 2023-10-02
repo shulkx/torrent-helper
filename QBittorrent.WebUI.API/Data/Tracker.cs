@@ -1,9 +1,9 @@
-﻿using QbtWebAPI.JSON;
-using QbtWebAPI.Enums;
+﻿using QBittorrent.WebUI.API.JSON;
+using QBittorrent.WebUI.API.Enums;
 using System;
 using System.Text.RegularExpressions;
 
-namespace QbtWebAPI.Data
+namespace QBittorrent.WebUI.API.Data
 {
 	/// <summary>
 	/// Torrent tracker.

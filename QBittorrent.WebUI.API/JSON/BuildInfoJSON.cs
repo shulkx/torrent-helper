@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QbtWebAPI.JSON
+namespace QBittorrent.WebUI.API.JSON
 {
     internal class BuildInfoJSON
     {

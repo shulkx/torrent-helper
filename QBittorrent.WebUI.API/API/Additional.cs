@@ -1,9 +1,9 @@
-﻿using QbtWebAPI.Enums;
+﻿using QBittorrent.WebUI.API.Enums;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QbtWebAPI
+namespace QBittorrent.WebUI.API
 {
 	public static partial class API
 	{

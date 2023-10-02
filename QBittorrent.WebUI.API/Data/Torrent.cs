@@ -1,8 +1,8 @@
-﻿using QbtWebAPI.Enums;
-using QbtWebAPI.JSON;
+﻿using QBittorrent.WebUI.API.Enums;
+using QBittorrent.WebUI.API.JSON;
 using System;
 
-namespace QbtWebAPI.Data
+namespace QBittorrent.WebUI.API.Data
 {
 	/// <summary>
 	/// Torrent.

@@ -1,4 +1,4 @@
-﻿namespace QbtWebAPI.JSON
+﻿namespace QBittorrent.WebUI.API.JSON
 {
 	internal class TorrentJSON
 	{

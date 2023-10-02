@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using QbtWebAPI.Enums;
+using QBittorrent.WebUI.API.Enums;
 
-namespace QbtWebAPI.Data
+namespace QBittorrent.WebUI.API.Data
 {
 	/// <summary>
 	/// Preferences.

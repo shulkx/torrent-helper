@@ -1,4 +1,4 @@
-﻿namespace QbtWebAPI.Enums
+﻿namespace QBittorrent.WebUI.API.Enums
 {
 	/// <summary>
 	/// State of torrent piece.

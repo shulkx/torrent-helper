@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QbtWebAPI.Data
+namespace QBittorrent.WebUI.API.Data
 {
 	/// <summary>
 	/// Time, i.e. 18:30.

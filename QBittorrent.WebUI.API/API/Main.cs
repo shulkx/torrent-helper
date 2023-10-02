@@ -4,13 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using QbtWebAPI.JSON;
+using QBittorrent.WebUI.API.JSON;
 using System.IO;
-using QbtWebAPI.Enums;
+using QBittorrent.WebUI.API.Enums;
 using Newtonsoft.Json.Linq;
-using QbtWebAPI.Data;
+using QBittorrent.WebUI.API.Data;
 
-namespace QbtWebAPI
+namespace QBittorrent.WebUI.API
 {
     /// <summary>
     /// Communicator for qBittorrent WebUI API.

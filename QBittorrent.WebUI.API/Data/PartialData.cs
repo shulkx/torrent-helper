@@ -1,7 +1,7 @@
-﻿using QbtWebAPI.JSON;
+﻿using QBittorrent.WebUI.API.JSON;
 using System.Collections.Generic;
 
-namespace QbtWebAPI.Data
+namespace QBittorrent.WebUI.API.Data
 {
 	/// <summary>
 	/// Partial data. Changes since last request.

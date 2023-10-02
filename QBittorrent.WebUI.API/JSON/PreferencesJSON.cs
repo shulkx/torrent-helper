@@ -1,8 +1,8 @@
-﻿using QbtWebAPI.Data;
+﻿using QBittorrent.WebUI.API.Data;
 using System;
 using System.Collections.Generic;
 
-namespace QbtWebAPI.JSON
+namespace QBittorrent.WebUI.API.JSON
 {
 
 	internal class PreferencesJSON

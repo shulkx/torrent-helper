@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace QbtWebAPI
+namespace QBittorrent.WebUI.API
 {
     public static partial class API
     {

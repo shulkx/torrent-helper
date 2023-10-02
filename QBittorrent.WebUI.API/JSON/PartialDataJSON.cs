@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QbtWebAPI.JSON
+namespace QBittorrent.WebUI.API.JSON
 {
 	internal class PartialDataJSON
 	{
