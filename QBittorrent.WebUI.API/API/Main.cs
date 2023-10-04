@@ -9,6 +9,7 @@ using System.IO;
 using QBittorrent.WebUI.API.Enums;
 using Newtonsoft.Json.Linq;
 using QBittorrent.WebUI.API.Data;
+using System.Web;
 
 namespace QBittorrent.WebUI.API
 {
@@ -74,26 +75,17 @@ namespace QBittorrent.WebUI.API
                 //    "Basic", Convert.ToBase64String(
                 //        Encoding.UTF8.GetBytes(username + ":" + password)));
 
-                //var cookies = reply.Headers.GetValues("Set-Cookie");
-                //if (cookies != null)
-                //{
-                //    string SID = null;
-                //    bool breakFlag = false;
-                //    foreach (string cookie in cookies)
-                //    {
-                //        string[] kvs = cookie.Split(new char[] { ';' },
-                //            StringSplitOptions.RemoveEmptyEntries);
-                //        foreach (string kv in kvs)
-                //        {
-                //            string[] vv = kv.Trim().Split(new char[] { '=' });
-                //            if (vv.Length == 2 && vv[0] == "SID")
-                //            { SID = vv[1]; breakFlag = true; break; }
-                //        }
-                //        if (breakFlag) break;
-                //    }
-                //    if (SID != null)
-                //        client.DefaultRequestHeaders.Add("Cookie", string.Format("SID={0};", SID));
-                //}
+                var cookies = reply.Headers.GetValues("Set-Cookie");
+                if (cookies != null)
+                {
+                    string? SID = cookies
+                        .SelectMany(cookie => cookie.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                        .Select(part => part.Trim().Split('='))
+                        .FirstOrDefault(parts => parts.Length == 2 && parts[0] == "SID")?[1];
+
+                    if (SID != null)
+                        client.DefaultRequestHeaders.Add("Cookie", $"SID={SID};");
+                }
 
                 return true;
             }
@@ -370,7 +362,7 @@ namespace QBittorrent.WebUI.API
         /// <returns>Torrent contents.</returns>
         public static async Task<List<TorrentContents>> GetTorrentContents(string hash)
         {
-            HttpResponseMessage reply = await Post(client, "/api/v2/torrents/files/" + hash);
+            HttpResponseMessage reply = await Get(client, "/api/v2/torrents/files?hash=" + hash);
 
             if (reply == null)
                 return null;
@@ -381,6 +373,32 @@ namespace QBittorrent.WebUI.API
 
             var array = JsonConvert.DeserializeObject<TorrentContents[]>(await reply.Content.ReadAsStringAsync());
             return new List<TorrentContents>(array);
+        }
+
+        /// <summary>
+        /// Renames a file within a torrent.
+        /// </summary>
+        /// <param name="hash">The hash of the torrent.</param>
+        /// <param name="oldPath">The old path of the file.</param>
+        /// <param name="newPath">The new path of the file.</param>
+        /// <returns>True if successful, false otherwise.</returns>
+        public static async Task<bool> RenameFile(string hash, string oldPath, string newPath)
+        {
+            try
+            {
+                var parameters = $"hash={hash}&oldPath={HttpUtility.UrlEncode(oldPath)}&newPath={HttpUtility.UrlEncode(newPath)}";
+                var content = ToStringContent(parameters);
+
+                var reply = await Post(client, "/api/v2/torrents/renameFile", content);
+
+                return reply != null && reply.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // Log exception and return false
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         /// <summary>
